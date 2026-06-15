@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="240"
+   height="120"
+   viewBox="0 0 240 120"
+   version="1.1"
+   id="svg1"
+   inkscape:export-filename="panel_active2.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   sodipodi:docname="drawing.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#191919"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#393939"
+     inkscape:document-units="px"
+     inkscape:zoom="4.5804806"
+     inkscape:cx="151.83996"
+     inkscape:cy="47.811577"
+     inkscape:window-width="2560"
+     inkscape:window-height="1368"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect6"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="C,0,0,1,0,0,0,1 @ C,0,0,1,0,0,0,1 @ C,0,0,1,0,20.672125,0,1 @ C,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="C"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#000000;fill-opacity:1;stroke:#c4ff00;stroke-width:2.02531;stroke-dasharray:none;stroke-opacity:1"
+       id="rect6"
+       width="240"
+       height="120"
+       x="-1"
+       y="1"
+       ry="0"
+       inkscape:path-effect="#path-effect6"
+       sodipodi:type="rect"
+       rx="0"
+       d="m -1,1 h 240 v 99.32788 L 218.32787,121 -1,121 Z"
+       transform="matrix(0.99164906,0,0,0.98336844,1.991649,0.01241869)" />
+    <text
+       xml:space="preserve"
+       style="font-size:16px;line-height:1;font-family:'PP Fraktion Mono';-inkscape-font-specification:'PP Fraktion Mono';text-align:justify;writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:1;stroke:#c4ff00;stroke-width:1.067;stroke-opacity:1"
+       x="5.98703"
+       y="111.11611"
+       id="text2"><tspan
+         sodipodi:role="line"
+         x="5.98703"
+         y="111.11611"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:1;font-family:'ProFont IIx Nerd Font Mono';-inkscape-font-specification:'ProFont IIx Nerd Font Mono';fill:#ffffff;fill-opacity:1;stroke:none"
+         id="tspan4">_btn1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:1;font-family:'ProFont IIx Nerd Font Mono';-inkscape-font-specification:'ProFont IIx Nerd Font Mono';text-align:justify;writing-mode:lr-tb;direction:ltr;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.067;stroke-opacity:1"
+       x="147.85399"
+       y="19.999996"
+       id="text5"><tspan
+         sodipodi:role="line"
+         id="tspan5"
+         x="147.85399"
+         y="19.999996">+++32x32</tspan></text>
+  </g>
+</svg>
