@@ -1,12 +1,11 @@
 import glfw, ctypes
 from OpenGL.GL import *
-from imgui_bundle import imgui, imgui_ctx, implot, portable_file_dialogs as pfd
-from imgui_bundle import icons_fontawesome_6 as icons
+import imgui_ext
+from imgui_ext import *
 
-ImVec2 = imgui.ImVec2
-ImVec2Like = imgui.ImVec2Like
-ImVec4 = imgui.ImVec4
-ImVec4Like = imgui.ImVec4Like
+utils_ext = utils
+widgets_ext = widgets
+del utils, widgets
 
 class GUI:
 	def __init__(self, window_title, dpi_scale: float = None):

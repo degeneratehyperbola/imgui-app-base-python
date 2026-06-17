@@ -1,61 +1,72 @@
-from typing import Callable
-from gui import *
-import imgui_utils
+import json
 import sys
+from gui import *
+import json
 
 class ThirtyThree(GUI):
 	def start(self):
 		self.font_normal = self.add_font('assets/pp_fraktion_mono.otf', 16)
 		self.add_font('assets/fa_solid.otf', 16, True)
-		self.font_title = self.add_font('assets/kh_interference.ttf', 32)
-		self.add_font('assets/fa_solid.otf', 32, True)
+		self.font_title = self.add_font('assets/kh_interference.ttf', 42)
+		self.add_font('assets/fa_solid.otf', 42, True)
 		
-		self.panel_button = imgui_utils.SlicedFrameButton(
-			imgui_utils.SlicedFrame(imgui_utils.make_texture('assets/panel_normal.png'), 60, 21, 240-140, 120-98, .5),
-			imgui_utils.SlicedFrame(imgui_utils.make_texture('assets/panel_hover.png'), 60, 21, 240-140, 120-98, .5),
-			imgui_utils.SlicedFrame(imgui_utils.make_texture('assets/panel_active.png'), 60, 21, 240-140, 120-98, .5),
-			imgui_utils.SlicedFrame(imgui_utils.make_texture('assets/panel_disabled.png'), 60, 21, 240-140, 120-98, .5)
+		self.panel_button = widgets_ext.SlicedFrameButton(
+			widgets_ext.SlicedFrame(utils_ext.make_texture('assets/panel_normal.png'), 60, 21, 240-140, 120-98, .5),
+			widgets_ext.SlicedFrame(utils_ext.make_texture('assets/panel_hover.png'), 60, 21, 240-140, 120-98, .5),
+			widgets_ext.SlicedFrame(utils_ext.make_texture('assets/panel_active.png'), 60, 21, 240-140, 120-98, .5),
+			widgets_ext.SlicedFrame(utils_ext.make_texture('assets/panel_disabled.png'), 60, 21, 240-140, 120-98, .5)
 		)
 
 		self.icon_filter = ''
-		self.dummy_flag = lambda: print('fart')
+		self.settings_filter = ''
+
+	def title(self, text: str):
+		with imgui_ctx.push_font(self.font_title, self.font_title.legacy_size):
+			imgui.text(text)
 
 	def gui(self):
-		imgui_utils.main_docking_space()
+		widgets_ext.main_docking_space()
 
 		with imgui_ctx.begin('Icon Inspector'):
-			imgui.set_next_item_width(-.01)
+			imgui.set_next_item_width(-imgui.FLT_MIN)
 			_, self.icon_filter = imgui.input_text_with_hint('##filter', 'Filter', self.icon_filter)
 
-			column_width = imgui.get_content_region_avail().x - 20
-			imgui.columns(2, borders=False)
-			imgui.set_column_width(-1, width=column_width)
+			flags = imgui.TableFlags_.scroll_y
+			flags |= imgui.TableFlags_.borders_inner
+			flags |= imgui.TableFlags_.sizing_fixed_fit
+			with imgui_ctx.begin_table('Icon Table', 2, flags):
+				for name, icon in icons.__dict__.items():
+					if not name.startswith('ICON'): continue
+					if name in ['ICON_MIN_FA', 'ICON_MAX_FA', 'ICON_MAX_16_FA']: continue
+					if not self.icon_filter.casefold() in name.casefold(): continue
 
-			for name, utf in icons.__dict__.items():
-				if not name.startswith('ICON'): continue
-				if name in ['ICON_MIN_FA', 'ICON_MAX_FA', 'ICON_MAX_16_FA']: continue
-				if not self.icon_filter.casefold() in name.casefold(): continue
+					imgui.table_next_column()
+					imgui.text(icon)
+					imgui.table_next_column()
+					imgui.text(name.removeprefix('ICON_FA_'))
 
-				imgui.text(name)
-				imgui.next_column()
-				imgui.text(str(utf))
-				imgui.next_column()
+		with imgui_ctx.begin('Settings'):
+			self.title('Settings')
 
-		with imgui_ctx.begin('ImGui Custom Demo'):
-			self.panel_button('Panel Button')
+			imgui.set_next_item_width(-imgui.FLT_MIN)
+			_, self.settings_filter = imgui.input_text_with_hint('##filter', 'Filter', self.settings_filter)
 
-			style = imgui.get_style()
-			style_props = {key: getattr(style, key) for key in style.__dir__() if key[0] != '_' and not isinstance(getattr(style, key), Callable)}
-			style_colors = {key: style.color_(val) for key, val in imgui.Col_.__dict__.items() if key[0] != '_' and 'count' not in key}
-			
-			_, style_props = imgui_utils.autogui('Style', style_props, True)
-			_, style_colors = imgui_utils.autogui('Colors', style_colors, True)
+			with imgui_ctx.begin_child('Settings List'):
+				_, style_ser = widgets_ext.autogui('Style', utils_ext.get_style_serialized(), filter=self.settings_filter)
 
-			for key, val in style_props.items():
-				setattr(style, key, val)
-			for key, val in style_colors.items():
-				style.set_color_(imgui.Col_.__dict__[key], val)
-
-			_, self.dummy_flag = imgui_utils.autogui('rounding', self.dummy_flag)
+				file_filters = ['ImGui Style Files', '*.style.json']
+				if imgui.button(f'{icons.ICON_FA_FILE_EXPORT} Export'):
+					path = pfd.save_file('Save Style Config', filters=file_filters).result()
+					if path:
+						with open(path, 'w+') as f:
+							json.dump(style_ser, f, indent='\t', cls=utils_ext.JSONEncoder)
+				imgui.same_line()
+				if imgui.button(f'{icons.ICON_FA_FILE_IMPORT} Import'):
+					paths = pfd.open_file('Open Style Config', filters=file_filters).result()
+					if paths:
+						with open(paths[0], 'r+') as f:
+							style_ser = json.load(f, cls=utils_ext.JSONDecoder)
+				
+				utils_ext.apply_style_serialized(style_ser)
 
 ThirtyThree('ImGui App', 1 if '--nodpi' in sys.argv else None).run()
