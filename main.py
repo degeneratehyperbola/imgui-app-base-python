@@ -1,14 +1,15 @@
 import json
 import sys
 from gui import *
+import re
 import json
 
 class ThirtyThree(GUI):
 	def start(self):
 		self.font_normal = self.add_font('assets/pp_fraktion_mono.otf', 16)
-		self.add_font('assets/fa_solid.otf', 16, True)
+		self.add_font('assets/fa_solid.otf', 16, True, True)
 		self.font_title = self.add_font('assets/kh_interference.ttf', 42)
-		self.add_font('assets/fa_solid.otf', 42, True)
+		self.add_font('assets/fa_solid.otf', 42, True, True)
 		
 		self.panel_button = widgets_ext.SlicedFrameButton(
 			widgets_ext.SlicedFrame(utils_ext.make_texture('assets/panel_normal.png'), 60, 21, 240-140, 120-98, .5),
@@ -38,7 +39,7 @@ class ThirtyThree(GUI):
 				for name, icon in icons.__dict__.items():
 					if not name.startswith('ICON'): continue
 					if name in ['ICON_MIN_FA', 'ICON_MAX_FA', 'ICON_MAX_16_FA']: continue
-					if not self.icon_filter.casefold() in name.casefold(): continue
+					if re.search(self.icon_filter, name, re.IGNORECASE) is None: continue
 
 					imgui.table_next_column()
 					imgui.text(icon)

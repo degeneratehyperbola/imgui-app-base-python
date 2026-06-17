@@ -1,5 +1,6 @@
 from collections.abc import Callable
 from dataclasses import dataclass
+import re
 from . import *
 
 class begin_disabled:
@@ -113,17 +114,18 @@ def main_docking_space():
 		imgui.dock_space(1, [0, 0], imgui.DockNodeFlags_.passthru_central_node)
 
 def autogui(label: str, obj, unfolded=True, filter='', skip_private=True):
-	label_casefold = label.casefold()
+	if filter != '' and not isinstance(obj, dict) and re.search(filter, label, re.IGNORECASE) is None:
+		return changed, obj
+	if skip_private and label.startswith('_'):
+		return changed, obj
+
 	label = utils.format_label(label)
 	
 	changed = False
 	
-	min0 = any(word in label_casefold for word in ['scale', 'rounding', 'padding', 'spacing'])
-	slider01 = any(word in label_casefold for word in ['alpha', 'transparency', 'opacity', 'align'])
-	is_undefined_flag = 'flags' in label_casefold
-
-	if filter != '' and not isinstance(obj, dict) and filter not in label_casefold: return changed, obj
-	if skip_private and label_casefold.startswith('_'): return changed, obj
+	min0 = re.search('scale|rounding|padding|spacing', label, re.IGNORECASE) is not None
+	slider01 = re.search('alpha|transparency|opacity|align', label, re.IGNORECASE) is not None
+	is_undefined_flag = re.search('flags', label, re.IGNORECASE) is not None
 
 	match obj:
 		case dict():

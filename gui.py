@@ -79,10 +79,14 @@ class GUI:
 	def close(self):
 		'''Called when user closes the window, before the context is destroyed.'''
 
-	def add_font(self, path: str, size=0, merge_with_last=False):
+	def add_font(self, path: str, size=0, is_icon_font=False, merge_with_last=False):
+		size *= self.dpi_scale
 		font_cfg = imgui.ImFontConfig()
 		font_cfg.merge_mode = merge_with_last
-		font = imgui.get_io().fonts.add_font_from_file_ttf(path, size*self.dpi_scale, font_cfg)
+		if is_icon_font:
+			font_cfg.glyph_min_advance_x = size + 3
+			font_cfg.glyph_max_advance_x = size + 3
+		font = imgui.get_io().fonts.add_font_from_file_ttf(path, size, font_cfg)
 		if not merge_with_last:
 			return font
 
