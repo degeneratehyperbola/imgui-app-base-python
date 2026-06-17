@@ -1,0 +1,500 @@
+{
+	"colors": {
+		"text": {
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0,
+			"w": 1.0
+		},
+		"text_disabled": {
+			"x": 0.5,
+			"y": 0.5,
+			"z": 0.5,
+			"w": 1.0
+		},
+		"window_bg": {
+			"x": 0.05999999865889549,
+			"y": 0.05999999865889549,
+			"z": 0.05999999865889549,
+			"w": 1.0
+		},
+		"child_bg": {
+			"x": 0.0,
+			"y": 0.0,
+			"z": 0.0,
+			"w": 0.0
+		},
+		"popup_bg": {
+			"x": 0.05999999865889549,
+			"y": 0.05999999865889549,
+			"z": 0.05999999865889549,
+			"w": 0.8767772316932678
+		},
+		"border": {
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0,
+			"w": 0.1374407410621643
+		},
+		"border_shadow": {
+			"x": 0.0,
+			"y": 0.0,
+			"z": 0.0,
+			"w": 0.0
+		},
+		"frame_bg": {
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0,
+			"w": 0.10900473594665527
+		},
+		"frame_bg_hovered": {
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0,
+			"w": 0.21800947189331055
+		},
+		"frame_bg_active": {
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0,
+			"w": 0.3601895570755005
+		},
+		"title_bg": {
+			"x": 0.03999999910593033,
+			"y": 0.03999999910593033,
+			"z": 0.03999999910593033,
+			"w": 1.0
+		},
+		"title_bg_active": {
+			"x": 0.08056873083114624,
+			"y": 0.08056873083114624,
+			"z": 0.08056873083114624,
+			"w": 1.0
+		},
+		"title_bg_collapsed": {
+			"x": 0.0,
+			"y": 0.0,
+			"z": 0.0,
+			"w": 0.5099999904632568
+		},
+		"menu_bar_bg": {
+			"x": 0.14000000059604645,
+			"y": 0.14000000059604645,
+			"z": 0.14000000059604645,
+			"w": 1.0
+		},
+		"scrollbar_bg": {
+			"x": 0.019999999552965164,
+			"y": 0.019999999552965164,
+			"z": 0.019999999552965164,
+			"w": 0.5299999713897705
+		},
+		"scrollbar_grab": {
+			"x": 0.3100000023841858,
+			"y": 0.3100000023841858,
+			"z": 0.3100000023841858,
+			"w": 1.0
+		},
+		"scrollbar_grab_hovered": {
+			"x": 0.4099999964237213,
+			"y": 0.4099999964237213,
+			"z": 0.4099999964237213,
+			"w": 1.0
+		},
+		"scrollbar_grab_active": {
+			"x": 0.5099999904632568,
+			"y": 0.5099999904632568,
+			"z": 0.5099999904632568,
+			"w": 1.0
+		},
+		"check_mark": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 1.0
+		},
+		"checkbox_selected_bg": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 0.2132701277732849
+		},
+		"slider_grab": {
+			"x": 0.4360189437866211,
+			"y": 0.4360189437866211,
+			"z": 0.4360189437866211,
+			"w": 1.0
+		},
+		"slider_grab_active": {
+			"x": 0.6303317546844482,
+			"y": 0.6303317546844482,
+			"z": 0.6303317546844482,
+			"w": 1.0
+		},
+		"button": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 0.2132701277732849
+		},
+		"button_hovered": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 0.4123222827911377
+		},
+		"button_active": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 0.6350710988044739
+		},
+		"header": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 0.2132701277732849
+		},
+		"header_hovered": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 0.4123222827911377
+		},
+		"header_active": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 0.6350710988044739
+		},
+		"separator": {
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0,
+			"w": 0.22748816013336182
+		},
+		"separator_hovered": {
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0,
+			"w": 0.5876777172088623
+		},
+		"separator_active": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 0.7298578023910522
+		},
+		"resize_grip": {
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0,
+			"w": 0.22748816013336182
+		},
+		"resize_grip_hovered": {
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0,
+			"w": 0.5876777172088623
+		},
+		"resize_grip_active": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 0.7298578023910522
+		},
+		"input_text_cursor": {
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0,
+			"w": 1.0
+		},
+		"tab_hovered": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 0.6635071039199829
+		},
+		"tab": {
+			"x": 0.23141871392726898,
+			"y": 0.2980392277240753,
+			"z": 0.0,
+			"w": 1.0
+		},
+		"tab_selected": {
+			"x": 0.45674747228622437,
+			"y": 0.5882353186607361,
+			"z": 0.0,
+			"w": 1.0
+		},
+		"tab_selected_overline": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 1.0
+		},
+		"tab_dimmed": {
+			"x": 0.1065744087100029,
+			"y": 0.13725490868091583,
+			"z": 0.0,
+			"w": 1.0
+		},
+		"tab_dimmed_selected": {
+			"x": 0.23141871392726898,
+			"y": 0.2980392277240753,
+			"z": 0.0,
+			"w": 1.0
+		},
+		"tab_dimmed_selected_overline": {
+			"x": 0.5,
+			"y": 0.5,
+			"z": 0.5,
+			"w": 0.0
+		},
+		"docking_preview": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 0.5450236797332764
+		},
+		"docking_empty_bg": {
+			"x": 0.20000000298023224,
+			"y": 0.20000000298023224,
+			"z": 0.20000000298023224,
+			"w": 1.0
+		},
+		"plot_lines": {
+			"x": 0.6100000143051147,
+			"y": 0.6100000143051147,
+			"z": 0.6100000143051147,
+			"w": 1.0
+		},
+		"plot_lines_hovered": {
+			"x": 1.0,
+			"y": 0.0,
+			"z": 0.0,
+			"w": 1.0
+		},
+		"plot_histogram": {
+			"x": 0.6100000143051147,
+			"y": 0.6100000143051147,
+			"z": 0.6100000143051147,
+			"w": 1.0
+		},
+		"plot_histogram_hovered": {
+			"x": 0.8530805706977844,
+			"y": 0.8530805706977844,
+			"z": 0.8530805706977844,
+			"w": 1.0
+		},
+		"table_header_bg": {
+			"x": 0.1899999976158142,
+			"y": 0.1899999976158142,
+			"z": 0.20000000298023224,
+			"w": 1.0
+		},
+		"table_border_strong": {
+			"x": 0.3100000023841858,
+			"y": 0.3100000023841858,
+			"z": 0.3499999940395355,
+			"w": 1.0
+		},
+		"table_border_light": {
+			"x": 0.23000000417232513,
+			"y": 0.23000000417232513,
+			"z": 0.25,
+			"w": 1.0
+		},
+		"table_row_bg": {
+			"x": 0.0,
+			"y": 0.0,
+			"z": 0.0,
+			"w": 0.0
+		},
+		"table_row_bg_alt": {
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0,
+			"w": 0.05999999865889549
+		},
+		"text_link": {
+			"x": 0.5076476335525513,
+			"y": 0.24170613288879395,
+			"z": 1.0,
+			"w": 1.0
+		},
+		"text_selected_bg": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 0.18483412265777588
+		},
+		"tree_lines": {
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0,
+			"w": 0.25592416524887085
+		},
+		"drag_drop_target": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 1.0
+		},
+		"drag_drop_target_bg": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 0.18483412265777588
+		},
+		"unsaved_marker": {
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0,
+			"w": 1.0
+		},
+		"nav_cursor": {
+			"x": 0.7686275243759155,
+			"y": 1.0,
+			"z": 0.0,
+			"w": 1.0
+		},
+		"nav_windowing_highlight": {
+			"x": 1.0,
+			"y": 1.0,
+			"z": 1.0,
+			"w": 0.699999988079071
+		},
+		"nav_windowing_dim_bg": {
+			"x": 0.800000011920929,
+			"y": 0.800000011920929,
+			"z": 0.800000011920929,
+			"w": 0.20000000298023224
+		},
+		"modal_window_dim_bg": {
+			"x": 0.800000011920929,
+			"y": 0.800000011920929,
+			"z": 0.800000011920929,
+			"w": 0.3499999940395355
+		}
+	},
+	"alpha": 1.0,
+	"anti_aliased_fill": true,
+	"anti_aliased_lines": true,
+	"anti_aliased_lines_use_tex": true,
+	"button_text_align": {
+		"x": 0.5,
+		"y": 0.5
+	},
+	"cell_padding": {
+		"x": 4.0,
+		"y": 2.0
+	},
+	"child_border_size": 1.0,
+	"child_rounding": 1.0,
+	"circle_tessellation_max_error": 0.30000001192092896,
+	"color_button_position": 1,
+	"color_marker_size": 3.0,
+	"columns_min_spacing": 6.0,
+	"curve_tessellation_tol": 1.25,
+	"disabled_alpha": 0.6000000238418579,
+	"display_safe_area_padding": {
+		"x": 3.0,
+		"y": 3.0
+	},
+	"display_window_padding": {
+		"x": 19.0,
+		"y": 19.0
+	},
+	"docking_node_has_close_button": true,
+	"docking_separator_size": 2.0,
+	"drag_drop_target_border_size": 3.0,
+	"drag_drop_target_padding": 3.0,
+	"drag_drop_target_rounding": 3.0,
+	"font_scale_dpi": 1.0,
+	"font_scale_main": 1.0,
+	"font_size_base": 16.0,
+	"frame_border_size": 1.0,
+	"frame_padding": {
+		"x": 4.0,
+		"y": 3.0
+	},
+	"frame_rounding": 1.0,
+	"grab_min_size": 12.0,
+	"grab_rounding": 0.0,
+	"hover_delay_normal": 0.4000000059604645,
+	"hover_delay_short": 0.15000000596046448,
+	"hover_flags_for_tooltip_mouse": 41984,
+	"hover_flags_for_tooltip_nav": 197632,
+	"hover_stationary_delay": 0.15000000596046448,
+	"image_border_size": 1.0,
+	"image_rounding": 1.0,
+	"indent_spacing": 21.0,
+	"item_inner_spacing": {
+		"x": 4.0,
+		"y": 4.0
+	},
+	"item_spacing": {
+		"x": 8.0,
+		"y": 4.0
+	},
+	"layout_align": 0.5,
+	"log_slider_deadzone": 4.0,
+	"mouse_cursor_scale": 1.0,
+	"popup_border_size": 1.0,
+	"popup_rounding": 5.0,
+	"scrollbar_padding": 2.0,
+	"scrollbar_rounding": 9.0,
+	"scrollbar_size": 14.0,
+	"selectable_text_align": {
+		"x": 0.0,
+		"y": 0.0
+	},
+	"separator_size": 1.0,
+	"separator_text_align": {
+		"x": 0.0,
+		"y": 0.5
+	},
+	"separator_text_border_size": 3.0,
+	"separator_text_padding": {
+		"x": 20.0,
+		"y": 3.0
+	},
+	"tab_bar_border_size": 2.0,
+	"tab_bar_overline_size": 1.0,
+	"tab_border_size": 1.0,
+	"tab_close_button_min_width_selected": -1.0,
+	"tab_close_button_min_width_unselected": 0.0,
+	"tab_min_width_base": 1.0,
+	"tab_min_width_shrink": 80.0,
+	"tab_rounding": 3.0,
+	"table_angled_headers_angle": 0.6108652353286743,
+	"table_angled_headers_text_align": {
+		"x": 0.5,
+		"y": 0.0
+	},
+	"touch_extra_padding": {
+		"x": 0.0,
+		"y": 0.0
+	},
+	"tree_lines_flags": 524288,
+	"tree_lines_rounding": 3.0,
+	"tree_lines_size": 1.0,
+	"window_border_hover_padding": 4.0,
+	"window_border_size": 1.0,
+	"window_menu_button_position": 1,
+	"window_min_size": {
+		"x": 32.0,
+		"y": 32.0
+	},
+	"window_padding": {
+		"x": 8.0,
+		"y": 8.0
+	},
+	"window_rounding": 5.0,
+	"window_title_align": {
+		"x": 0.0,
+		"y": 0.5
+	}
+}
