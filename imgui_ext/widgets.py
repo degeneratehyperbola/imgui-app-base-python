@@ -114,7 +114,7 @@ def main_docking_space():
 		imgui.dock_space(1, [0, 0], imgui.DockNodeFlags_.passthru_central_node)
 
 def autogui(label: str, obj, unfolded=True, filter='', skip_private=True):
-	if filter != '' and not isinstance(obj, dict) and re.search(filter, label, re.IGNORECASE) is None:
+	if not isinstance(obj, dict) and utils.regexp_filter(filter, label) is None:
 		return changed, obj
 	if skip_private and label.startswith('_'):
 		return changed, obj

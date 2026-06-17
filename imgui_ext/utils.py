@@ -3,6 +3,7 @@ import numpy as np
 from PIL import Image
 import sys
 import json
+import re
 from . import *
 
 class JSONEncoder(json.JSONEncoder):
@@ -146,6 +147,14 @@ def calc_item_size(size: ImVec2Like, default_w: float = 0, default_h: float = 0)
 
 def format_label(s: str):
 	return ' '.join(s.split('_')).title()
+
+def regexp_filter(pattern: str, s: str):
+	if pattern == '' or s == '': return True
+	
+	try:
+		return re.search(pattern, s, re.IGNORECASE)
+	except:
+		return False
 
 _texture_info = {}
 def get_texture_size(texture_id) -> ImVec2:

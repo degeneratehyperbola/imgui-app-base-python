@@ -39,7 +39,7 @@ class ThirtyThree(GUI):
 				for name, icon in icons.__dict__.items():
 					if not name.startswith('ICON'): continue
 					if name in ['ICON_MIN_FA', 'ICON_MAX_FA', 'ICON_MAX_16_FA']: continue
-					if re.search(self.icon_filter, name, re.IGNORECASE) is None: continue
+					if not utils_ext.regexp_filter(self.icon_filter, name): continue
 
 					imgui.table_next_column()
 					imgui.text(icon)
