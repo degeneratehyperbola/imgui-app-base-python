@@ -10,6 +10,8 @@ class ThirtyThree(GUI):
 		self.add_font('assets/fa_solid.otf', 16, True, True)
 		self.font_title = self.add_font('assets/kh_interference.ttf', 42)
 		self.add_font('assets/fa_solid.otf', 42, True, True)
+		self.font_tool = self.add_font('assets/marathon_shapiro.ttf', 16)
+		self.add_font('assets/fa_solid.otf', 16, True, True)
 		
 		self.panel_button = widgets_ext.SlicedFrameButton(
 			widgets_ext.SlicedFrame(utils_ext.make_texture('assets/panel_normal.png'), 60, 21, 240-140, 120-98, .5),
@@ -24,6 +26,10 @@ class ThirtyThree(GUI):
 	def title(self, text: str):
 		with imgui_ctx.push_font(self.font_title, self.font_title.legacy_size):
 			imgui.text(text)
+	
+	def tool_button(self, text: str, icon: str = None):
+		with imgui_ctx.push_font(self.font_tool, self.font_tool.legacy_size):
+			return imgui.button(f'{icon} {text}' if icon else text)
 
 	def gui(self):
 		widgets_ext.main_docking_space()
@@ -56,13 +62,13 @@ class ThirtyThree(GUI):
 				_, style_ser = widgets_ext.autogui('Style', utils_ext.get_style_serialized(), filter=self.settings_filter)
 
 				file_filters = ['ImGui Style Files', '*.style.json']
-				if imgui.button(f'{icons.ICON_FA_FILE_EXPORT} Export'):
+				if self.tool_button('Export', icons.ICON_FA_FILE_EXPORT):
 					path = pfd.save_file('Save Style Config', filters=file_filters).result()
 					if path:
 						with open(path, 'w+') as f:
 							json.dump(style_ser, f, indent='\t', cls=utils_ext.JSONEncoder)
 				imgui.same_line()
-				if imgui.button(f'{icons.ICON_FA_FILE_IMPORT} Import'):
+				if self.tool_button('Import', icons.ICON_FA_FILE_IMPORT):
 					paths = pfd.open_file('Open Style Config', filters=file_filters).result()
 					if paths:
 						with open(paths[0], 'r+') as f:
