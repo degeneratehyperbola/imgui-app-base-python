@@ -256,7 +256,7 @@
 			"x": 0.7686275243759155,
 			"y": 1.0,
 			"z": 0.0,
-			"w": 0.5450236797332764
+			"w": 0.3886256217956543
 		},
 		"docking_empty_bg": {
 			"x": 0.20000000298023224,
@@ -422,7 +422,7 @@
 	},
 	"frame_rounding": 1.0,
 	"grab_min_size": 12.0,
-	"grab_rounding": 0.0,
+	"grab_rounding": 1.0,
 	"hover_delay_normal": 0.4000000059604645,
 	"hover_delay_short": 0.15000000596046448,
 	"hover_flags_for_tooltip_mouse": 41984,
