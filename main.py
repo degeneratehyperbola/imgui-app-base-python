@@ -3,6 +3,10 @@ from gui import *
 
 class ImGuiAppBase(GUI):
 	def start(self):
+		try:
+			ser_ext.apply_style_serialized(ser_ext.load_obj('default.style.json'))
+		except: pass
+
 		self.font_normal = self.add_font('assets/pp_fraktion_mono.otf', 16)
 		self.add_font('assets/fa_solid.otf', 16, True, True)
 		self.font_title = self.add_font('assets/kh_interference.ttf', 42)
