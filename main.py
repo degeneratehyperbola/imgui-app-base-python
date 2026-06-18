@@ -23,6 +23,7 @@ class ImGuiAppBase(GUI):
 
 		self.icon_filter = ''
 		self.settings_filter = ''
+		self.style = ser_ext.get_style_serialized()
 
 	def title(self, text: str):
 		with imgui_ctx.push_font(self.font_title, self.font_title.legacy_size):
@@ -55,26 +56,25 @@ class ImGuiAppBase(GUI):
 
 		with imgui_ctx.begin('Settings'):
 			self.title('Settings')
-
+			
+			file_filters = ['ImGui Style Files', '*.style.json']
+			if self.tool_button('Import', icons.ICON_FA_FILE_IMPORT):
+				paths = pfd.open_file('Open Style Config', filters=file_filters).result()
+				try:
+					self.style = ser_ext.load_obj(paths[0])
+				except: pass
+			imgui.same_line(spacing=imgui.get_style().item_inner_spacing.x)
+			if self.tool_button('Export', icons.ICON_FA_FILE_EXPORT):
+				path = pfd.save_file('Save Style Config', filters=file_filters).result()
+				try:
+					ser_ext.dump_obj(self.style, path)
+				except: pass
+			
 			imgui.set_next_item_width(-imgui.FLT_MIN)
 			_, self.settings_filter = imgui.input_text_with_hint('##filter', 'Filter', self.settings_filter)
 
 			with imgui_ctx.begin_child('Settings List'):
-				_, style_ser = widgets_ext.autogui('Style', ser_ext.get_style_serialized(), filter=self.settings_filter)
-
-				file_filters = ['ImGui Style Files', '*.style.json']
-				if self.tool_button('Export', icons.ICON_FA_FILE_EXPORT):
-					path = pfd.save_file('Save Style Config', filters=file_filters).result()
-					try:
-						ser_ext.dump_obj(style_ser, path)
-					except: pass
-				imgui.same_line()
-				if self.tool_button('Import', icons.ICON_FA_FILE_IMPORT):
-					paths = pfd.open_file('Open Style Config', filters=file_filters).result()
-					try:
-						style_ser = ser_ext.load_obj(paths[0])
-					except: pass
-				
-				ser_ext.apply_style_serialized(style_ser)
+				_, self.style = widgets_ext.autogui('Style', self.style, filter=self.settings_filter)
+				ser_ext.apply_style_serialized(self.style)
 
 ImGuiAppBase('ImGui App', 1 if '--nodpi' in sys.argv else None).run()
