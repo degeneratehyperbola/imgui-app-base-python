@@ -5,7 +5,8 @@ from imgui_ext import *
 
 utils_ext = utils
 widgets_ext = widgets
-del utils, widgets
+ser_ext = ser
+del utils, widgets, ser
 
 class GUI:
 	def __init__(self, window_title, dpi_scale: float = None):

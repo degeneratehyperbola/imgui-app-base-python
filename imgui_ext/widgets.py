@@ -113,97 +113,97 @@ def main_docking_space():
 		imgui.pop_style_var(3)
 		imgui.dock_space(1, [0, 0], imgui.DockNodeFlags_.passthru_central_node)
 
-def autogui(label: str, obj, unfolded=True, filter='', skip_private=True):
-	if not isinstance(obj, dict) and utils.regexp_filter(filter, label) is None:
-		return changed, obj
-	if skip_private and label.startswith('_'):
-		return changed, obj
-
-	label = utils.format_label(label)
-	
+def autogui(label: str, obj_serialized, unfolded=True, filter='', skip_private=True):
 	changed = False
 	
+	if not isinstance(obj_serialized, dict) and utils.regexp_filter(filter, label) is None:
+		return changed, obj_serialized
+	if skip_private and label.startswith('_'):
+		return changed, obj_serialized
+
+	label = utils.format_label(label)
+		
 	min0 = re.search('scale|rounding|padding|spacing', label, re.IGNORECASE) is not None
 	slider01 = re.search('alpha|transparency|opacity|align', label, re.IGNORECASE) is not None
 	is_undefined_flag = re.search('flags', label, re.IGNORECASE) is not None
 
-	match obj:
+	match obj_serialized:
 		case dict():
 			flags = imgui.TreeNodeFlags_.draw_lines_full | imgui.TreeNodeFlags_.span_full_width
 			if unfolded: flags |= imgui.TreeNodeFlags_.default_open
 			if imgui.tree_node_ex(label, flags):
-				for key in obj:
-					child_changed, obj[key] = autogui(key, obj[key], unfolded, filter, skip_private)
+				for key in obj_serialized:
+					child_changed, obj_serialized[key] = autogui(key, obj_serialized[key], unfolded, filter, skip_private)
 					changed = changed or child_changed
 				imgui.tree_pop()
 		case list():
-			with begin_disabled(len(obj) == 0):
+			with begin_disabled(len(obj_serialized) == 0):
 				with imgui_ctx.begin_list_box(label):
-					for i, item in enumerate(obj):
-						child_changed, obj[i] = autogui(f"[{i}]", item)
+					for i, item in enumerate(obj_serialized):
+						child_changed, obj_serialized[i] = autogui(f"[{i}]", item)
 						changed = changed or child_changed
 
-						if len(obj) > 1:
+						if len(obj_serialized) > 1:
 							imgui.same_line()
 							if imgui.button(f'{icons.ICON_FA_XMARK}##{i}'):
-								obj.pop(i)
+								obj_serialized.pop(i)
 								changed = True
 								break
 					
 					if imgui.button(f'{icons.ICON_FA_SQUARE_PLUS} Add Item', [-imgui.FLT_MIN, 0]):
-						obj.append(type(obj[0])()) # Infer type from first element
+						obj_serialized.append(type(obj_serialized[0])()) # Infer type from first element
 						changed = True
 		case Flag():
 			if imgui.begin_list_box(label):
-				T = type(obj)
+				T = type(obj_serialized)
 				with style_compact():
 					for flag in T:
-						sub_changed, obj = imgui.checkbox_flags(utils.format_label(flag.name), obj.value, flag.value)
-						obj = T(obj)
+						sub_changed, obj_serialized = imgui.checkbox_flags(utils.format_label(flag.name), obj_serialized.value, flag.value)
+						obj_serialized = T(obj_serialized)
 						changed = changed or sub_changed
 				imgui.end_list_box()
 		case Enum():
-			if imgui.begin_combo(label, utils.format_label(obj.name)):
-				for enum in type(obj):
-					sub_changed, selected = imgui.selectable(utils.format_label(enum.name), obj == enum)
+			if imgui.begin_combo(label, utils.format_label(obj_serialized.name)):
+				for enum in type(obj_serialized):
+					sub_changed, selected = imgui.selectable(utils.format_label(enum.name), obj_serialized == enum)
 					changed = changed or sub_changed
-					if selected: obj = enum
+					if selected: obj_serialized = enum
 				imgui.end_combo()
 		case bool():
-			changed, obj = imgui.checkbox(label, obj)
+			changed, obj_serialized = imgui.checkbox(label, obj_serialized)
 		case str():
-			changed, obj = imgui.input_text(label, obj)
+			changed, obj_serialized = imgui.input_text(label, obj_serialized)
 		case int():
 			if is_undefined_flag:
 				if imgui.begin_list_box(label):
 					for i in range(31):
 						flag = 1 << i
-						sub_changed, selected = imgui.selectable(f'1 << {i}', bool(obj & flag))
+						sub_changed, selected = imgui.selectable(f'1 << {i}', bool(obj_serialized & flag))
 						changed = changed or sub_changed
-						if selected: obj = obj | flag
-						else: obj = obj & ~flag
+						if selected: obj_serialized = obj_serialized | flag
+						else: obj_serialized = obj_serialized & ~flag
 					imgui.end_list_box()
 			else:
-				changed, obj = imgui.drag_int(label, obj, v_max=imgui.INT_MAX if min0 else 0)
+				changed, obj_serialized = imgui.drag_int(label, obj_serialized, v_max=imgui.INT_MAX if min0 else 0)
 		case float():
 			if slider01:
-				changed, obj = imgui.slider_float(label, obj, 0, 1)
+				changed, obj_serialized = imgui.slider_float(label, obj_serialized, 0, 1)
 			else:
-				changed, obj = imgui.drag_float(label, obj, 0.01, v_max=imgui.INT_MAX if min0 else 0)
+				changed, obj_serialized = imgui.drag_float(label, obj_serialized, 0.01, v_max=imgui.INT_MAX if min0 else 0)
 		case ImVec2():
 			if slider01:
-				changed, obj = imgui.slider_float2(label, list(obj), 0, 1)
+				changed, obj_serialized = imgui.slider_float2(label, list(obj_serialized), 0, 1)
 			else:
-				changed, obj = imgui.drag_float2(label, list(obj), 0.01, v_max=imgui.INT_MAX if min0 else 0)
-			obj = ImVec2(*obj)
-			if min0: obj = obj.max([0, 0])
+				changed, obj_serialized = imgui.drag_float2(label, list(obj_serialized), 0.01, v_max=imgui.INT_MAX if min0 else 0)
+			obj_serialized = ImVec2(*obj_serialized)
+			if min0: obj_serialized = obj_serialized.max([0, 0])
 		case ImVec4():
 			flags = imgui.ColorEditFlags_.alpha_preview_half | imgui.ColorEditFlags_.alpha_bar
-			changed, obj = imgui.color_edit4(label, obj, flags)
-			obj = ImVec4(*obj)
+			changed, obj_serialized = imgui.color_edit4(label, obj_serialized, flags)
+			obj_serialized = ImVec4(*obj_serialized)
 		case Callable():
 			if imgui.button(label):
-				obj()
+				obj_serialized()
 		case None:
 			with begin_disabled():
 				imgui.input_text(label, 'None')
@@ -211,4 +211,4 @@ def autogui(label: str, obj, unfolded=True, filter='', skip_private=True):
 			with begin_disabled():
 				imgui.input_text(label, 'Unknown')
 	
-	return changed, obj
+	return changed, obj_serialized

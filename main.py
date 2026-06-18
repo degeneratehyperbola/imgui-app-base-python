@@ -1,8 +1,6 @@
 import json
 import sys
 from gui import *
-import re
-import json
 
 class ThirtyThree(GUI):
 	def start(self):
@@ -59,21 +57,21 @@ class ThirtyThree(GUI):
 			_, self.settings_filter = imgui.input_text_with_hint('##filter', 'Filter', self.settings_filter)
 
 			with imgui_ctx.begin_child('Settings List'):
-				_, style_ser = widgets_ext.autogui('Style', utils_ext.get_style_serialized(), filter=self.settings_filter)
+				_, style_ser = widgets_ext.autogui('Style', ser_ext.get_style_serialized(), filter=self.settings_filter)
 
 				file_filters = ['ImGui Style Files', '*.style.json']
 				if self.tool_button('Export', icons.ICON_FA_FILE_EXPORT):
 					path = pfd.save_file('Save Style Config', filters=file_filters).result()
-					if path:
-						with open(path, 'w+') as f:
-							json.dump(style_ser, f, indent='\t', cls=utils_ext.JSONEncoder)
+					try:
+						ser_ext.dump_obj(style_ser, path)
+					except: pass
 				imgui.same_line()
 				if self.tool_button('Import', icons.ICON_FA_FILE_IMPORT):
 					paths = pfd.open_file('Open Style Config', filters=file_filters).result()
-					if paths:
-						with open(paths[0], 'r+') as f:
-							style_ser = json.load(f, cls=utils_ext.JSONDecoder)
+					try:
+						style_ser = ser_ext.load_obj(paths[0])
+					except: pass
 				
-				utils_ext.apply_style_serialized(style_ser)
+				ser_ext.apply_style_serialized(style_ser)
 
 ThirtyThree('ImGui App', 1 if '--nodpi' in sys.argv else None).run()
