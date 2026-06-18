@@ -1,8 +1,7 @@
-import json
 import sys
 from gui import *
 
-class ThirtyThree(GUI):
+class ImGuiAppBase(GUI):
 	def start(self):
 		self.font_normal = self.add_font('assets/pp_fraktion_mono.otf', 16)
 		self.add_font('assets/fa_solid.otf', 16, True, True)
@@ -74,4 +73,4 @@ class ThirtyThree(GUI):
 				
 				ser_ext.apply_style_serialized(style_ser)
 
-ThirtyThree('ImGui App', 1 if '--nodpi' in sys.argv else None).run()
+ImGuiAppBase('ImGui App', 1 if '--nodpi' in sys.argv else None).run()
