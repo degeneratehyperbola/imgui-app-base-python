@@ -123,13 +123,13 @@ def autogui(label: str, obj_serialized, unfolded=True, filter='', skip_private=T
 
 	label = utils.format_label(label)
 		
-	min0 = re.search('scale|rounding|padding|spacing', label, re.IGNORECASE) is not None
+	min0 = re.search('scale|rounding|padding|spacing|delay', label, re.IGNORECASE) is not None
 	slider01 = re.search('alpha|transparency|opacity|align', label, re.IGNORECASE) is not None
 	is_undefined_flag = re.search('flags', label, re.IGNORECASE) is not None
 
 	match obj_serialized:
 		case dict():
-			flags = imgui.TreeNodeFlags_.draw_lines_full | imgui.TreeNodeFlags_.span_full_width
+			flags = imgui.TreeNodeFlags_.span_full_width
 			if unfolded: flags |= imgui.TreeNodeFlags_.default_open
 			if imgui.tree_node_ex(label, flags):
 				for key in obj_serialized:
